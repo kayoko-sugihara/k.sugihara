@@ -185,7 +185,7 @@
       font-weight: bold;
       padding: 18px 16px;
       text-align: center;
-      cursor: grab; /* マウスカーソルを掴むアイコンに変更 */
+      cursor: grab; /* マウスを掴むカーソルに変更 */
       box-shadow: 0 5px 8px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.9);
       text-shadow: 0 1px 0 rgba(255,255,255,0.8);
       display: flex;
@@ -736,7 +736,7 @@
 
     container.appendChild(grid);
 
-    // ★ メイン画面のボタンにドラッグ＆ドロップ機能を適用
+    // ★ メイン画面のボタンのみドラッグ＆ドロップ適用
     new Sortable(grid, {
       animation: 150,
       ghostClass: 'sortable-ghost',
@@ -991,17 +991,7 @@
       item.innerHTML = html;
       list.appendChild(item);
     });
-
-    // ★ 設定画面のカードリストにもドラッグ＆ドロップを適用
-    new Sortable(list, {
-      animation: 150,
-      ghostClass: 'sortable-ghost',
-      onEnd: function (evt) {
-        const movedItem = configData.splice(evt.oldIndex, 1)[0];
-        configData.splice(evt.newIndex, 0, movedItem);
-        renderSettingsList();
-      }
-    });
+    // ※ 設定画面内の Sortable 適用を除外（ドラッグ移動を無効化）
   }
 
   function changeType(index, type) {
